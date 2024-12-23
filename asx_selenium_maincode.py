@@ -1,3 +1,13 @@
+""" 
+Developer Name: MARUTHACHALAM S
+Project Title: Australian Stock Exchange Company Announcements
+Date: 23.12.2024
+Version 1
+
+ """ 
+
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -6,11 +16,9 @@ import requests
 import re
 
 
-# Function to clean filenames
 def clean_filename(filename):
     return re.sub(r'[\\/*?:"<>|]', "", filename).replace("\n", " ").strip()
 
-# Output file headers
 output_sheet = "Sl.No\tASX Code\tDate\tHeadline\tPDF URL\tStatus\n"
 with open("Output_Sheet.txt", 'w') as SM:
     SM.write(output_sheet)
@@ -18,7 +26,6 @@ with open("Output_Sheet.txt", 'w') as SM:
 with open("Cookie.txt", 'r') as SM:
     cookie_data = SM.read()
     
-# Get user input for the search date
 search_date = input("Enter Search Date: ")
 month = input("Enter Search Month: ")
 year = input("Enter Search Year: ")
@@ -29,8 +36,6 @@ main_url = f"https://www.asx.com.au/asx/v2/statistics/announcements.do?by=asxCod
 driver = webdriver.Chrome()
 
 driver.get(main_url)
-
-# Give the page some time to load
 time.sleep(5)
 
 content = driver.page_source
